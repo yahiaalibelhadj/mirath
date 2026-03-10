@@ -1,1 +1,19 @@
 
+<?php
+// Détection du protoche
+$protocole = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+
+// URL complète actuelle
+$url_actuelle = $protocole . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+// Nouvelle URL
+$nouvelle_url = "https://www.cwoste-sba.dz/mirath/";
+
+// Vérifier si on n'est pas déjà sur le nouveau site
+if (strpos($url_actuelle, 'cwoste-sba.dz') === false) {
+    // Redirection 301 (permanente)
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: $nouvelle_url");
+    exit();
+}
+?>
